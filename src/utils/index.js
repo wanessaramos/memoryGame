@@ -5,7 +5,7 @@ export function embaralharCartas(arr) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 
-    return arr;
+    return array;
 }
 
 function virarCartasParaBaixo(arr){
