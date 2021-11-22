@@ -1,18 +1,23 @@
-export function embaralharCartas(arr) {
-    var array = virarCartasParaBaixo(arr);
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
+export function embaralharCartas(cartas) {
+  let cartasViradas = virarCartasParaBaixo(cartas);
+  for (let posicao = cartasViradas.length - 1; posicao > 0; posicao--) {
+    const proximaPosicao = Math.floor(Math.random() * (posicao + 1));
+    [cartasViradas[posicao], cartasViradas[proximaPosicao]] = [
+      cartasViradas[proximaPosicao],
+      cartasViradas[posicao],
+    ];
+  }
 
-    return array;
+  return cartasViradas;
 }
 
-function virarCartasParaBaixo(arr){
-    for(let k = 0; k < arr.length; k++){
-        if(arr[k].virada === false){
-            arr[k].virada = true
-        }
+function virarCartasParaBaixo(cartas) {
+  if (cartas?.length > 0) {
+    for (let posicao = 0; posicao < cartas.length; posicao++) {
+      if (!cartas[posicao].virada) {
+        cartas[posicao].virada = true;
+      }
     }
-    return arr;
+  }
+  return cartas;
 }
