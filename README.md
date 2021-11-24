@@ -10,10 +10,10 @@ This project was developed by three students of the IFAL from discipline **Progr
 
 ## Requirement
 
-- [x] nodejs >= 14
+- [x] nodejs 14++
 - [x] Expo
 
 ## How can I use?
 
 - [x] npm install
-- [x] npm start ou check "scripts" into package.json
+- [x] npm start or check "scripts" into package.json
