@@ -127,7 +127,8 @@ export default function App() {
           carta.id === updateCarta.id ? updateCarta : carta
         ),
       };
-    } else if (action.type === 'VIRA_CARTAS') {
+    }
+    if (action.type === 'VIRA_CARTAS') {
       const updateCarta = action.payload;
       updateCarta.virada = true;
 
@@ -137,12 +138,11 @@ export default function App() {
           carta.id === updateCarta.id ? updateCarta : carta
         ),
       };
-    } else {
-      return {
-        ...state,
-        cartas: action.payload,
-      };
     }
+    return {
+      ...state,
+      cartas: action.payload,
+    };
   }
 
   const [state, dispatch] = useReducer(reducer, initialState);
