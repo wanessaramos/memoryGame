@@ -34,28 +34,25 @@ export default function Game() {
     return { type: 'VIRA_CARTAS', payload: e };
   };
 
-  function verificaCarta(newCartaClicada) {
+  const verificaCarta = (newCartaClicada) => {
     if (cartaClicada === undefined) {
-      setCartaClicada(newCartaClicada);
-    } else {
-      let cartasViradas = [];
-
-      if (cartaClicada.nome !== newCartaClicada.nome) {
-        cartasViradas.push(cartaClicada);
-        cartasViradas.push(newCartaClicada);
-
-        setTimeout(() => {
-          for (var posicao = 0; posicao < DUAS_CARTAS; posicao++) {
-            dispatch(getTypeVirarCartas(cartasViradas[posicao]));
-          }
-        }, TIME_MS_VIRAR_CARTA);
-
-        setCartaClicada(undefined);
-      } else {
-        setPontuacao(pontuacao + 100);
-        setCartaClicada(undefined);
-      }
+      return setCartaClicada(newCartaClicada);
+    } 
+    
+    if (cartaClicada.nome == newCartaClicada.nome) {
+      setPontuacao(pontuacao + 100);
+      return setCartaClicada(undefined);
     }
+    
+    const cartasViradas = [cartaClicada, newCartaClicada];
+
+    setTimeout(() => {
+      for (var posicao = 0; posicao < DUAS_CARTAS; posicao++) {
+        dispatch(getTypeVirarCartas(cartasViradas[posicao]));
+      }
+    }, TIME_MS_VIRAR_CARTA);
+
+    setCartaClicada(undefined);
   }
 
   return (
@@ -96,10 +93,10 @@ const styles = StyleSheet.create({
   },
   content: {
     width: window.width,
-    height: window.height,
+    height: window.height - 50,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignItems: 'center',
+    alignItems: 'center', 
   },
   menu: {
     backgroundColor: Color.white,
